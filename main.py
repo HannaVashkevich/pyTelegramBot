@@ -1,18 +1,16 @@
 from telethon import TelegramClient, events
+import gif_maker
 import public_resources as pr
 
-bot = TelegramClient('bot', pr.api_id, pr.api_hash).start(bot_token=pr.bot_token)
+ubot = TelegramClient('ubot', pr.api_id, pr.api_hash).start(bot_token=pr.bot_token)
 
-@bot.on(events.NewMessage(pattern='/start'))
+@ubot.on(events.NewMessage(pattern='/start'))
 async def welcome(event):
-    print('aaa')
     await event.reply("Hello, i'm bot for personal Hanna's needs", buttons=pr.list_of_buttons)
 
 
-@bot.on(events.CallbackQuery(data=b'btn_gif_click'))
+@ubot.on(events.CallbackQuery(data=b'btn_gif_click'))
 async def gif_make(event):
-    pass
+    await gif_maker.main(ubot)
 
-
-if __name__ == '__main__':
-    bot.run_until_disconnected()
+ubot.run_until_disconnected()
