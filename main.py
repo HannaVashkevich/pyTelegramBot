@@ -4,6 +4,7 @@ import public_resources as pr
 
 ubot = TelegramClient('ubot', pr.api_id, pr.api_hash).start(bot_token=pr.bot_token)
 
+
 @ubot.on(events.NewMessage(pattern='/start'))
 async def welcome(event):
     await event.reply("Hello, i'm bot for personal Hanna's needs", buttons=pr.list_of_buttons)

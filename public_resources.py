@@ -1,9 +1,11 @@
 #res for gif_maker
-t_channel = "howMinskisbeautiful"
-parc_limit = 2
+t_channel = "howMinskisbeautiful" #format of info str, just channel adress
+parc_limit = 6 #count of taking message from hisory
+pic = 'rec'
 
+#all buttons for work
 from telethon.tl.custom import Button
-list_of_buttons = [Button.inline('Make GIF', b'btn_gif_click'),
+list_of_buttons = [Button.inline('Make GIF', b'btn_gif_click'), #gif_maker
                    Button.inline('Personal Planer', b'btn_pp_click')]
 
 #secret config
