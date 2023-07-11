@@ -1,7 +1,10 @@
+import os
 #res for gif_maker
 t_channel = "howMinskisbeautiful" #format of info str, just channel adress
 parc_limit = 6 #count of taking message from hisory
-pic = 'rec'
+pic_for_gif = 'rec_for_gif'
+gif_storage_path = os.path.abspath(pic_for_gif)
+os.makedirs(gif_storage_path, exist_ok=True)
 
 #all buttons for work
 from telethon.tl.custom import Button

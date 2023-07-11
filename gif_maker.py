@@ -20,17 +20,19 @@ async def main(ubot):
                                             hash=-12398745604826))
 
         for m in mess.messages:
-            await clbot.download_media(m.media, pr.pic)
+            blob = await clbot.download_media(m, bytes)
+            with open(pr.gif_storage_path + '\\' + str(m.id) + '.jpg', "wb") as p:
+                p.write(blob)
         await ubot.send_message(pr.my_username, 'i')
 
 
-        for p_name in os.listdir(pr.pic):
-            path_pic_for_gif = os.path.join(pr.pic, p_name)
+        for p_name in os.listdir(pr.pic_for_gif):
+            path_pic_for_gif = os.path.join(pr.pic_for_gif, p_name)
             if os.path.isfile(path_pic_for_gif):
                 gif_by_pic.append(Image.open(path_pic_for_gif))
         print('1111')
         gif_by_pic[0].save(
-            pr.pic+'\\'+ 'maked_gif.gif',
+            pr.pic_for_gif+'\\'+ 'maked_gif.gif',
             save_all=True,
             append_images=gif_by_pic[1:],
             optimize=True,
