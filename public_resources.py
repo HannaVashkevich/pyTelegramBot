@@ -1,18 +1,20 @@
 import os
-#res for gif_maker
-t_channel = "howMinskisbeautiful" #format of info str, just channel adress
-parc_limit = 100 #count of taking message from hisory
+# res for gif_maker
+t_channel = "howMinskisbeautiful"  # format of info str, just channel adress
+parc_limit = 1  # butch limit of message from history
+msg_limit = 6  # count of taking butches
 pic_for_gif = 'rec_for_gif'
 gif_storage_path = os.path.abspath(pic_for_gif)
 os.makedirs(gif_storage_path, exist_ok=True)
-need_save = False #for test mod
+need_save = True  # for test mod
 
-#all buttons for work
+
+# all buttons for work
 from telethon.tl.custom import Button
-list_of_buttons = [Button.inline('Make GIF', b'btn_gif_click'), #gif_maker
+list_of_buttons = [Button.inline('Make GIF', b'btn_gif_click'),  # gif_maker
                    Button.inline('Personal Planer', b'btn_pp_click')]
 
-#secret config
+# secret config
 import configparser
 config = configparser.ConfigParser()
 config.read('config.ini')
