@@ -7,20 +7,24 @@ from PIL import Image, ImageDraw, ImageFont
 # make connect for read history message
 clbot = TelegramClient('clbot', pr.api_id, pr.api_hash).start()
 
-
 async def main(ubot):
     await ubot.send_message(pr.my_username, 'lets fun')
     gif_by_pic = []
     try:
-        print('t')
         if pr.need_save:
             await grab_img()
 
         await ubot.send_message(pr.my_username, 'i')
-
-        for p_name in sorted(os.listdir(pr.pic_for_gif)):
-            # make gif in memory, read every pic in folder and appendin future gif file
-            path_pic_for_gif = os.path.join(pr.gif_storage_path, p_name)
+        file_list_str = os.listdir(pr.pic_for_gif)
+        file_list_int = []
+        for f in file_list_str:
+            try:
+                file_list_int.append(int(f[:-4]))
+            except:
+                pass
+        for p_name in sorted(file_list_int):
+            # make gif in memory, read every pic in folder and appending future gif file
+            path_pic_for_gif = os.path.join(pr.gif_storage_path, str(p_name) + '.jpg' )
             if os.path.isfile(path_pic_for_gif) and os.path.splitext(path_pic_for_gif)[1] == '.jpg':
                 gif_by_pic.append(Image.open(path_pic_for_gif))
         print('31')
@@ -57,7 +61,6 @@ async def grab_img():
             break
         mess = posts.messages
         for m in mess:
-            print(str(m.id))
             total_messages = total_messages + 1
             if m.media:
                 current_path = pr.gif_storage_path + '\\' + str(m.id) + '.jpg'
