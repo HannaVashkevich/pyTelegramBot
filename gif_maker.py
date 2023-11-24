@@ -8,13 +8,10 @@ from PIL import Image, ImageDraw, ImageFont
 clbot = TelegramClient('clbot', pr.api_id, pr.api_hash).start()
 
 async def main(ubot):
-    await ubot.send_message(pr.my_username, 'lets fun')
     gif_by_pic = []
     try:
         if pr.need_save:
             await grab_img()
-
-        await ubot.send_message(pr.my_username, 'i')
         file_list_str = os.listdir(pr.pic_for_gif)
         file_list_int = []
         for f in file_list_str:
